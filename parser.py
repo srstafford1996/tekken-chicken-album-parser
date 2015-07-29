@@ -72,5 +72,22 @@ def downloadAlbum(name, url):
 
 characters = getLinks();
 
-for character in characters:
-    downloadAlbum(character['name'], character['link'])
+
+print('\nSELECT CHARACTER TO DOWNLOAD.\nPRESS 0 TO DOWNLOAD ALL\n\n')
+
+inp = -2
+while(inp != -1):
+
+    i = 1
+    for character in characters:
+        print(str(i) + ': ' + character['name'])
+        i += 1
+
+
+    inp = int(input())
+
+    if inp == 0:
+        for character in characters:
+            downloadAlbum(character['name'], character['link'])
+    elif inp != -1 and inp <= len(characters):
+        downloadAlbum(characters[inp-1]['name'], characters[inp-1]['link'])
