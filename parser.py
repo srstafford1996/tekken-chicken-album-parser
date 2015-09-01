@@ -34,7 +34,7 @@ def downloadAlbum(name, url):
 
     for img in imgtags:
         img_id = img['id'].replace('thumb-', '')
-        url = 'i.imgur.com/' + img_id + '.gif'
+        url = 'http://i.imgur.com/' + img_id + '.gif'
         images.append({'notation': img['title'], 'url': url})
 
     imgtags = parsed.find('div', {'id': 'thumbs-bottom'}).find_all('img')
@@ -56,7 +56,7 @@ def downloadAlbum(name, url):
 
         #Download image file
         try:
-            request.urlretrieve(url, os.path.join(os.getcwd(), 'gifs', name , str(i) + '.gif' ))
+            request.urlretrieve(image['url'], os.path.join(os.getcwd(), 'gifs', name , str(i) + '.gif' ))
         except FileNotFoundError:
             #Make directory
             os.makedirs(os.path.join(os.getcwd(), 'gifs', name))
